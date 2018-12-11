@@ -1,4 +1,5 @@
 import junit.framework.Assert.assertEquals
+import org.junit.Ignore
 import org.junit.Test;
 import java.time.Instant
 import java.time.temporal.ChronoUnit
@@ -76,6 +77,7 @@ class FrequencyCalculatorTest {
     }
 
     @Test
+    @Ignore
     fun getFirstDuplicate_returnsFirst() {
         val start = Instant.now()
         assertEquals(69074, getFirstDuplicate("frequencies.txt"))

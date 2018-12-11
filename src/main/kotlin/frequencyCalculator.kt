@@ -7,10 +7,7 @@ fun calculateFrequency(changeFileName :String): Int {
 }
 
 fun calculateFrequency(changes :List<String>): Int {
-    var count = 0
-    for (change in changes)
-        count += getChangeValue(change)
-    return count
+    return changes.map {getChangeValue(it)}.sum()
 }
 
 fun getFirstDuplicate(changeFileName :String): Int {
@@ -19,16 +16,12 @@ fun getFirstDuplicate(changeFileName :String): Int {
 }
 
 fun getFirstDuplicate(changes :List<String>): Int {
-    val counts = mutableSetOf<Int>()
-    var count = 0
-    counts.add(count)
+    val counts = mutableSetOf(0)
     while (true) {
         changes.forEach { change ->
-            count += getChangeValue(change)
-            if (counts.contains(count)) {
-                return count
-            } else {
-                counts.add(count)
+            val changeVal = counts.last() + getChangeValue(change)
+            if (!counts.add(changeVal)) {
+                return changeVal
             }
         }
     }
